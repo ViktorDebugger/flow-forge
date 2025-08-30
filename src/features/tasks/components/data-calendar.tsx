@@ -11,7 +11,7 @@ import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 
-import { Task } from "../types";
+import { PopulatedTask } from "../types";
 import { useState } from "react";
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -31,7 +31,7 @@ const localizer = dateFnsLocalizer({
 });
 
 interface DataCalendarProps {
-  data: Task[];
+  data: PopulatedTask[];
 }
 
 interface CustomToolbarProps {
@@ -69,7 +69,7 @@ export const DataCalendar = ({ data }: DataCalendarProps) => {
     data.length > 0 ? new Date(data[0].dueDate) : new Date()
   );
 
-  const events = data.map((task) => ({
+  const events = data.map((task: PopulatedTask) => ({
     start: new Date(task.dueDate),
     end: new Date(task.dueDate),
     title: task.name,
@@ -109,8 +109,8 @@ export const DataCalendar = ({ data }: DataCalendarProps) => {
           <EventCard
             id={event.id}
             title={event.title}
-            assignee={event.assignee}
-            project={event.project}
+            assignee={event.assignee!}
+            project={event.project!}
             status={event.status}
           />
         ),

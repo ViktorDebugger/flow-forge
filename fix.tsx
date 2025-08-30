@@ -51,18 +51,12 @@ export const CreateTaskForm = ({
 
   const { mutate, isPending } = useCreateTask();
 
-  const formSchema = createTaskSchema.omit({ workspaceId: true });
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      status: status || TaskStatus.TODO,
-      dueDate: new Date(),
-    },
+  const form = useForm<z.infer<typeof createTaskSchema>>({
+    resolver: zodResolver(createTaskSchema.omit({ workspaceId: true })),
+    defaultValues: { name: "", workspaceId, status: status || TaskStatus.TODO },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = (values: z.infer<typeof createTaskSchema>) => {
     mutate(
       { json: { ...values, workspaceId } },
       {
@@ -104,7 +98,19 @@ export const CreateTaskForm = ({
                   </FormItem>
                 )}
               />
-
+              <FormField
+                name="dueDate"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Due Date</FormLabel>
+                    <FormControl>
+                      <DatePicker {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <FormField
                 name="assigneeId"
                 control={form.control}
@@ -143,7 +149,6 @@ export const CreateTaskForm = ({
                   </FormItem>
                 )}
               />
-
               <FormField
                 name="status"
                 control={form.control}
@@ -177,20 +182,6 @@ export const CreateTaskForm = ({
                   </FormItem>
                 )}
               />
-              <FormField
-                name="dueDate"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Due Date</FormLabel>
-                    <FormControl>
-                      <DatePicker {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
               <FormField
                 name="projectId"
                 control={form.control}

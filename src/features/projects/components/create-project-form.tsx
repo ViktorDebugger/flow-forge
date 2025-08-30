@@ -40,6 +40,7 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const formSchema = createProjectSchema.omit({ workspaceId: true });
+  
   type FormValues = z.infer<typeof formSchema>;
 
   const form = useForm<FormValues>({

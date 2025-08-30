@@ -1,6 +1,6 @@
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 import { useCreateTaskModal } from "../hooks/use-create-task-modal";
-import { Task } from "../types";
+import { PopulatedTask } from "../types";
 import { Button } from "@/components/ui/button";
 import { CalendarIcon, PlusIcon } from "lucide-react";
 import { DottedSeparator } from "@/components/dotted-separator";
@@ -9,7 +9,7 @@ import { formatDistanceToNow } from "date-fns";
 import Link from "next/link";
 
 interface TaskListProps {
-  data: Task[];
+  data: PopulatedTask[];
   total: number;
 }
 

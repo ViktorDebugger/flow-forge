@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { client } from "@/lib/rpc";
-import { TaskStatus } from "../types";
+import { TasksResponse, TaskStatus } from "../types";
 
 interface UseGetTasksProps {
   workspaceId: string;
@@ -48,7 +48,7 @@ export const useGetTasks = ({
 
       const { data } = await responce.json();
 
-      return data;
+      return data as TasksResponse;
     },
   });
 
