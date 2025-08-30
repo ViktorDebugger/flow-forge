@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Task } from "../types";
+import { PopulatedTask } from "../types";
 import { PencilIcon } from "lucide-react";
 import { DottedSeparator } from "@/components/dotted-separator";
 import { OverviewProperty } from "./overview-property";
@@ -10,7 +10,7 @@ import { snakeCaseToTitleCase } from "@/lib/utils";
 import { useEditTaskModal } from "../hooks/use-edit-task-modal";
 
 interface TaskOverviewProps {
-  task: Task;
+  task: PopulatedTask;
 }
 
 export const TaskOverview = ({ task }: TaskOverviewProps) => {
@@ -36,8 +36,8 @@ export const TaskOverview = ({ task }: TaskOverviewProps) => {
             <p className="text-sm font-medium">{task.name}</p>
           </OverviewProperty>
           <OverviewProperty label="Assignee">
-            <MemberAvatar name={task.assignee.name} className="size-6" />
-            <p className="text-sm font-medium">{task.assignee.name}</p>
+            <MemberAvatar name={task!.assignee!.name} className="size-6" />
+            <p className="text-sm font-medium">{task!.assignee!.name}</p>
           </OverviewProperty>
           <OverviewProperty label="Due Date">
             <TaskDate value={task.dueDate} className="text-sm font-medium" />

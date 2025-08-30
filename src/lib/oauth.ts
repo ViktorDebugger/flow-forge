@@ -7,29 +7,29 @@ import { headers } from "next/headers";
 import { OAuthProvider } from "node-appwrite";
 
 export async function signUpWithGithub() {
-	const { account } = await createAdminClient();
+  const { account } = await createAdminClient();
 
-  const origin = headers().get("origin");
-  
-	const redirectUrl = await account.createOAuth2Token(
-		OAuthProvider.Github,
-		`${origin}/oauth`,
-		`${origin}/sign-up`,
-	);
+  const origin = (await headers()).get("origin");
 
-	return redirect(redirectUrl);
-};
+  const redirectUrl = await account.createOAuth2Token(
+    OAuthProvider.Github,
+    `${origin}/oauth`,
+    `${origin}/sign-up`
+  );
+
+  return redirect(redirectUrl);
+}
 
 export async function signUpWithGoogle() {
-	const { account } = await createAdminClient();
+  const { account } = await createAdminClient();
 
-  const origin = headers().get("origin");
-  
-	const redirectUrl = await account.createOAuth2Token(
-		OAuthProvider.Google,
-		`${origin}/oauth`,
-		`${origin}/sign-up`,
-	);
+  const origin = (await headers()).get("origin");
 
-	return redirect(redirectUrl);
-};
+  const redirectUrl = await account.createOAuth2Token(
+    OAuthProvider.Google,
+    `${origin}/oauth`,
+    `${origin}/sign-up`
+  );
+
+  return redirect(redirectUrl);
+}

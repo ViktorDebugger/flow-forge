@@ -7,7 +7,7 @@ import {
   DropResult,
 } from "@hello-pangea/dnd";
 
-import { Task, TaskStatus } from "../types";
+import { PopulatedTask, Task, TaskStatus } from "../types";
 import { KanbanColumnHeader } from "./kanban-column-header";
 import { KanbanCard } from "./kanban-card";
 
@@ -24,7 +24,7 @@ type TaskState = {
 };
 
 interface DataKanbanProps {
-  data: Task[];
+  data: PopulatedTask[];
   onChange: (
     tasks: { $id: string; status: TaskStatus; position: number }[]
   ) => void;

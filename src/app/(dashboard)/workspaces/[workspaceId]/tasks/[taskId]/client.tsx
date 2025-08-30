@@ -8,6 +8,7 @@ import { useGetTask } from "@/features/tasks/api/use-get-task";
 import { useTaskId } from "@/features/tasks/hooks/use-task-id";
 import { TaskOverview } from "@/features/tasks/components/task-overview";
 import { TaskDescription } from "@/features/tasks/components/task-description";
+import { PopulatedTask } from "@/features/tasks/types";
 
 export const TaskIdClient = () => {
   const taskId = useTaskId();
@@ -26,7 +27,7 @@ export const TaskIdClient = () => {
       <TaskBreadcrumbs project={data.project} task={data} />
       <DottedSeparator className="my-6" />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <TaskOverview task={data} />
+        <TaskOverview task={data as PopulatedTask} />
         <TaskDescription task={data} />
       </div>
     </div>
