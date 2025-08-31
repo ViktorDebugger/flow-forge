@@ -24,10 +24,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn(inter.className, "antialiased min-h-screen")}>
         <QueryProvider>
-          <NuqsAdapter>
-            <Toaster />
-            {children}
-          </NuqsAdapter>
+          <Toaster />
+          <NuqsAdapter>{children}</NuqsAdapter>
         </QueryProvider>
       </body>
     </html>
